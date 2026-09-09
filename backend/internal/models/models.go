@@ -34,17 +34,17 @@ func (u User) Public() PublicUser {
 
 type VerificationRecord struct {
 	ID          string    `json:"id"`
-	UserID      string    `json:"userId"`
+	UserID      string    `json:"user_id"`
 	Domain      string    `json:"domain"`
-	HasMX       bool      `json:"hasMX"`
-	HasSPF      bool      `json:"hasSPF"`
-	HasDMARC    bool      `json:"hasDMARC"`
-	SPFRecord   string    `json:"spfRecord,omitempty"`
-	DMARCRecord string    `json:"dmarcRecord,omitempty"`
-	MXHosts     []string  `json:"mxHosts,omitempty"`
+	HasMX       bool      `json:"has_mx"`
+	MXHosts     []string  `json:"mx_hosts,omitempty"`
+	HasSPF      bool      `json:"has_spf"`
+	SPFRecord   string    `json:"spf_record,omitempty"`
+	HasDMARC    bool      `json:"has_dmarc"`
+	DMARCRecord string    `json:"dmarc_record,omitempty"`
 	Valid       bool      `json:"valid"`
 	Error       string    `json:"error,omitempty"`
-	CreatedAt   time.Time `json:"createdAt"`
+	CheckedAt   time.Time `json:"checked_at"`
 }
 
 type AnalyticsSummary struct {
