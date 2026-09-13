@@ -25,7 +25,6 @@ func Check(ctx context.Context, domain string) models.VerificationRecord {
 	resolver := net.DefaultResolver
 
 	// mx records
-
 	mxRecords, err := resolver.LookupMX(ctx, domain)
 	if err != nil {
 		if !isNoSuchHost(err) {
@@ -39,7 +38,6 @@ func Check(ctx context.Context, domain string) models.VerificationRecord {
 	}
 
 	//spf records
-
 	txtRecords, err := resolver.LookupTXT(ctx, domain)
 	if err != nil {
 		if !isNoSuchHost(err) {
@@ -56,7 +54,6 @@ func Check(ctx context.Context, domain string) models.VerificationRecord {
 	}
 
 	//dmarc records
-
 	dmarcRecords, err := resolver.LookupTXT(ctx, "_dmarc."+domain)
 	if err != nil {
 		if !isNoSuchHost(err) {

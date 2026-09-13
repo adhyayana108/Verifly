@@ -50,6 +50,7 @@ func newStoreData() *storeData {
 		EmailToID:    make(map[string]string),
 		Records:      make([]models.VerificationRecord, 0),
 		Quota:        make(map[string]int),
+		NextUserSeq:  0,
 	}
 }
 
@@ -224,8 +225,8 @@ func (s *JSONStore) GetHistory(userID string, limit int) ([]models.VerificationR
 	}
 
 	sort.Slice(matched, func(i, j int) bool {
-    return matched[i].CheckedAt.After(matched[j].CheckedAt)
-})
+		return matched[i].CheckedAt.After(matched[j].CheckedAt)
+	})
 
 	if limit > 0 && limit < len(matched) {
 		matched = matched[:limit]
