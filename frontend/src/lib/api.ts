@@ -1,5 +1,11 @@
 import type { AdminUserView, AnalyticsSummary, AuthResponse, BulkEvent, VerificationRecord } from "./types";
 
+declare global {
+  interface ImportMeta {
+    env: Record<string, string | undefined>;
+  }
+}
+
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
 
 export class ApiError extends Error {
