@@ -1,15 +1,16 @@
-import type { AdminUserView, AnalyticsSummary, AuthResponse, BulkEvent, VerificationRecord } from "./types";
-
-declare global {
-  interface ImportMeta {
-    env: Record<string, string | undefined>;
-  }
-}
+import type {
+  AdminUserView,
+  AnalyticsSummary,
+  AuthResponse,
+  BulkEvent,
+  VerificationRecord,
+} from "./types";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
 
 export class ApiError extends Error {
   status: number;
+
   constructor(status: number, message: string) {
     super(message);
     this.status = status;
@@ -35,61 +36,94 @@ function authHeaders(): Record<string, string> {
 async function parseErrorBody(res: Response): Promise<string> {
   try {
     const body = await res.json();
-    if (body && typeof body.error === "string" && body.error.length > 0) {
+
+    if (
+      body &&
+      typeof body.error === "string" &&
+      body.error.length > 0
+    ) {
       return body.error;
     }
   } catch {
+    // Response wasn't JSON.
   }
-  return STATUS_FALLBACKS[res.status] ?? `Request failed (${res.status}).`;
+
+  return (
+    STATUS_FALLBACKS[res.status] ??
+    `Request failed (${res.status}).`
+  );
 }
 
-async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
+async function request<T>(
+  path: string,
+  init: RequestInit = {},
+): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, {
     ...init,
     headers: {
-      ...(init.body && !(init.body instanceof FormData) ? { "Content-Type": "application/json" } : {}),
+      ...(init.body && !(init.body instanceof FormData)
+        ? { "Content-Type": "application/json" }
+        : {}),
       ...authHeaders(),
       ...(init.headers ?? {}),
     },
   });
 
   if (!res.ok) {
-    throw new ApiError(res.status, await parseErrorBody(res));
+    throw new ApiError(
+      res.status,
+      await parseErrorBody(res),
+    );
   }
 
-  if (res.status === 204) return undefined as T;
+  if (res.status === 204) {
+    return undefined as T;
+  }
+
   return (await res.json()) as T;
 }
 
 // Auth
 
-export function register(input: { username: string; email: string; password: string }) {
-  return request<AuthResponse>("/api/auth/register", {
+export function register(input: {
+  username: string;
+  email: string;
+  password: string;
+}) {
+  return request<AuthResponse>("/api/register", {
     method: "POST",
     body: JSON.stringify(input),
   });
 }
 
-export function login(input: { username: string; password: string }) {
-  return request<AuthResponse>("/api/auth/login", {
+export function login(input: {
+  username: string;
+  password: string;
+}) {
+  return request<AuthResponse>("/api/login", {
     method: "POST",
     body: JSON.stringify(input),
   });
 }
 
 export function me() {
-  return request<import("./types").PublicUser>("/api/auth/me");
+  return request<import("./types").PublicUser>("/api/me");
 }
 
-//  Verification 
+// Verification
 
 export function verifyDomain(domain: string) {
-  return request<VerificationRecord>(`/api/verify?domain=${encodeURIComponent(domain)}`);
+  return request<VerificationRecord>(
+    `/api/verify?domain=${encodeURIComponent(domain)}`,
+  );
 }
 
 export function getHistory(limit?: number) {
   const qs = limit ? `?limit=${limit}` : "";
-  return request<VerificationRecord[]>(`/api/history${qs}`);
+
+  return request<VerificationRecord[]>(
+    `/api/history${qs}`,
+  );
 }
 
 export function getAnalytics() {
@@ -103,7 +137,7 @@ export function getAdminUsers() {
 export async function bulkVerify(
   file: File,
   onEvent: (event: BulkEvent) => void,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<void> {
   const form = new FormData();
   form.append("file", file);
@@ -116,28 +150,51 @@ export async function bulkVerify(
   });
 
   if (!res.ok || !res.body) {
-    throw new ApiError(res.status, await parseErrorBody(res));
+    throw new ApiError(
+      res.status,
+      await parseErrorBody(res),
+    );
   }
 
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
+
   let buffer = "";
 
   while (true) {
     const { done, value } = await reader.read();
-    if (done) break;
+
+    if (done) {
+      break;
+    }
+
     buffer += decoder.decode(value, { stream: true });
 
     let newlineIndex: number;
+
     while ((newlineIndex = buffer.indexOf("\n")) >= 0) {
-      const line = buffer.slice(0, newlineIndex).trim();
+      const line = buffer
+        .slice(0, newlineIndex)
+        .trim();
+
       buffer = buffer.slice(newlineIndex + 1);
-      if (!line) continue;
+
+      if (!line) {
+        continue;
+      }
+
       onEvent(JSON.parse(line) as BulkEvent);
     }
+  }
+
+  // Process a final line if the server closes without a trailing newline.
+  const finalLine = buffer.trim();
+
+  if (finalLine) {
+    onEvent(JSON.parse(finalLine) as BulkEvent);
   }
 }
 
 export function healthz() {
-  return request<{ status: string }>("/api/healthz");
+  return request<{ status: string }>("/healthz");
 }
