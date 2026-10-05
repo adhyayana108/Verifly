@@ -54,6 +54,6 @@ type AnalyticsSummary struct {
 	MXPresentRate    float64        `json:"mxPresentRate"`
 	SPFPresentRate   float64        `json:"spfPresentRate"`
 	DMARCPresentRate float64        `json:"dmarcPresentRate"`
-	CheckedByDate    map[string]int `json:"checkedByDate"`
-	RecentDpmain     []string       `json:"recentDomains"`
+	CheckedByDay     map[string]int `json:"checkedByDay"`
+	RecentDomains    []string       `json:"recentDomains"`
 }

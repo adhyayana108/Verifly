@@ -53,9 +53,6 @@ func (a *API) Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	role := "user"
-	if existing, err := a.Store.ListUsers(); err == nil && len(existing) == 0 {
-		role = "admin"
-	}
 
 	user, err := a.Store.CreateUser(req.Username, req.Email, hash, role)
 	if err != nil {

@@ -1,0 +1,381 @@
+{
+  "Users": {
+    "u_1": {
+      "id": "u_1",
+      "username": "user",
+      "email": "user@gmail.com",
+      "role": "user",
+      "createdAt": "2026-10-05T11:17:16.149545227Z",
+      "dailyQuota": 100
+    }
+  },
+  "UsernameToID": {
+    "user": "u_1"
+  },
+  "EmailToID": {
+    "user@gmail.com": "u_1"
+  },
+  "Records": [
+    {
+      "id": "v_1",
+      "user_id": "u_1",
+      "domain": "google.com",
+      "has_mx": true,
+      "mx_hosts": [
+        "smtp.google.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 include:_spf.google.com ~all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1; p=reject; rua=mailto:mailauth-reports@google.com",
+      "valid": true,
+      "checked_at": "2026-10-05T11:17:31.820628167Z"
+    },
+    {
+      "id": "v_2",
+      "user_id": "u_1",
+      "domain": "nue.eww",
+      "has_mx": false,
+      "has_spf": false,
+      "has_dmarc": false,
+      "valid": false,
+      "checked_at": "2026-10-05T11:17:43.761927465Z"
+    },
+    {
+      "id": "v_3",
+      "user_id": "u_1",
+      "domain": "github.com",
+      "has_mx": true,
+      "mx_hosts": [
+        "github-com.mail.protection.outlook.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 ip4:192.30.252.0/22 include:spf.protection.outlook.com include:_netblocks.google.com include:_netblocks2.google.com include:mail.zendesk.com include:_spf.salesforce.com include:servers.mcsv.net include:mktomail.com include:sendgrid.net ip4:62.253.227.114 ip4:166.78.69.169 ip4:166.78.69.170 ip4:166.78.71.131 ~all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1; p=quarantine; sp=reject; pct=100; rua=mailto:dmarc@github.com; ruf=mailto:dmarc@github.com; fo=1",
+      "valid": true,
+      "checked_at": "2026-10-05T11:17:54.650449255Z"
+    },
+    {
+      "id": "v_4",
+      "user_id": "u_1",
+      "domain": "noi.eww",
+      "has_mx": false,
+      "has_spf": false,
+      "has_dmarc": false,
+      "valid": false,
+      "checked_at": "2026-10-05T11:18:04.320974967Z"
+    },
+    {
+      "id": "v_5",
+      "user_id": "u_1",
+      "domain": "line.me",
+      "has_mx": true,
+      "mx_hosts": [
+        "mx-common.line-apps.com",
+        "mx2-common.line-apps.com",
+        "mx3-common.line-apps.com",
+        "mx1-common.line-apps.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 include:naver.com include:spf.naver.jp ip4:203.104.136.0/24 ip4:147.92.128.0/17 include:_spfblock_ext.line.me include:bulk-spf.yahoo.co.jp ~all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1; p=none; fo=s; rua=mailto:dl_dmarc@linecorp.com; pct=100",
+      "valid": true,
+      "checked_at": "2026-10-05T11:18:05.353994892Z"
+    },
+    {
+      "id": "v_6",
+      "user_id": "u_1",
+      "domain": "amazon.co.jp",
+      "has_mx": true,
+      "mx_hosts": [
+        "amazon-smtp.amazon.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 include:amazon.com include:spf-bma.mpme.jp -all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1;p=quarantine;pct=100;rua=mailto:report@dmarc.amazon.com;ruf=mailto:report@dmarc.amazon.com",
+      "valid": true,
+      "checked_at": "2026-10-05T11:18:05.561862453Z"
+    },
+    {
+      "id": "v_7",
+      "user_id": "u_1",
+      "domain": "bhindi.ai",
+      "has_mx": false,
+      "has_spf": false,
+      "has_dmarc": false,
+      "valid": false,
+      "checked_at": "2026-10-05T11:18:05.828364015Z"
+    },
+    {
+      "id": "v_8",
+      "user_id": "u_1",
+      "domain": "who.int",
+      "has_mx": true,
+      "mx_hosts": [
+        "who-int.mail.protection.outlook.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 ip4:158.232.12.0/24 include:spf.protection.outlook.com include:_spfincludes.who.int -all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1; p=reject; pct=100; fo=1; ri=3600; rua=mailto:422b6d07@inbox.ondmarc.com,mailto:dmarc-rua@who.int;",
+      "valid": true,
+      "checked_at": "2026-10-05T11:18:06.240342512Z"
+    },
+    {
+      "id": "v_9",
+      "user_id": "u_1",
+      "domain": "yonu.lol",
+      "has_mx": false,
+      "has_spf": false,
+      "has_dmarc": false,
+      "valid": false,
+      "checked_at": "2026-10-05T11:18:06.824293121Z"
+    },
+    {
+      "id": "v_10",
+      "user_id": "u_1",
+      "domain": "forms.gle",
+      "has_mx": false,
+      "has_spf": false,
+      "has_dmarc": false,
+      "valid": false,
+      "checked_at": "2026-10-05T11:18:07.223188747Z"
+    },
+    {
+      "id": "v_11",
+      "user_id": "u_1",
+      "domain": "twitch.tv",
+      "has_mx": true,
+      "mx_hosts": [
+        "aspmx.l.google.com",
+        "alt1.aspmx.l.google.com",
+        "alt2.aspmx.l.google.com",
+        "aspmx2.googlemail.com",
+        "aspmx3.googlemail.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 include:_spf.google.com include:amazonses.com include:_spf.twitch.tv include:aspmx.pardot.com a mx -all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1; p=reject; adkim=s; aspf=s; fo=1; ri=3600; rua=mailto:report@dmarc.amazon.com; ruf=mailto:report@dmarc.amazon.com",
+      "valid": true,
+      "checked_at": "2026-10-05T11:18:10.705646375Z"
+    },
+    {
+      "id": "v_12",
+      "user_id": "u_1",
+      "domain": "slideshare.net",
+      "has_mx": true,
+      "mx_hosts": [
+        "smtp.google.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 ip4:34.216.216.60 ip4:34.216.216.61 ip4:52.39.56.161 ip4:52.43.64.76  ip4:192.174.84.0/28 ip4:147.253.223.25 ip4:147.253.223.26 ~all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1; p=reject; rua=mailto:dmarc@slideshare.com; ruf=mailto:dmarc@slideshare.com",
+      "valid": true,
+      "checked_at": "2026-10-05T11:18:11.666456136Z"
+    },
+    {
+      "id": "v_13",
+      "user_id": "u_1",
+      "domain": "nytimes.com",
+      "has_mx": true,
+      "mx_hosts": [
+        "aspmx.l.google.com",
+        "alt2.aspmx.l.google.com",
+        "alt1.aspmx.l.google.com",
+        "alt4.aspmx.l.google.com",
+        "alt3.aspmx.l.google.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 include:nytimes.com._nspf.vali.email include:%{i}._ip.%{h}._ehlo.%{d}._spf.vali.email include:_spf.e.sparkpost.com include:amazonses.com ~all",
+      "has_dmarc": false,
+      "valid": false,
+      "error": "DMARC: lookup _dmarc.nytimes.com on [2409:40e3:3105:22bc::e8]:53: dial udp [2409:40e3:3105:22bc::e8]:53: i/o timeout",
+      "checked_at": "2026-10-05T11:18:12.132036319Z"
+    },
+    {
+      "id": "v_14",
+      "user_id": "u_1",
+      "domain": "google.com",
+      "has_mx": true,
+      "mx_hosts": [
+        "smtp.google.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 include:_spf.google.com ~all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1; p=reject; rua=mailto:mailauth-reports@google.com",
+      "valid": true,
+      "checked_at": "2026-10-05T11:29:43.318127191Z"
+    },
+    {
+      "id": "v_15",
+      "user_id": "u_1",
+      "domain": "hey.lolz",
+      "has_mx": false,
+      "has_spf": false,
+      "has_dmarc": false,
+      "valid": false,
+      "checked_at": "2026-10-05T11:29:57.207766059Z"
+    },
+    {
+      "id": "v_16",
+      "user_id": "u_1",
+      "domain": "noi.eww",
+      "has_mx": false,
+      "has_spf": false,
+      "has_dmarc": false,
+      "valid": false,
+      "checked_at": "2026-10-05T11:30:07.703704614Z"
+    },
+    {
+      "id": "v_17",
+      "user_id": "u_1",
+      "domain": "slideshare.net",
+      "has_mx": true,
+      "mx_hosts": [
+        "smtp.google.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 ip4:34.216.216.60 ip4:34.216.216.61 ip4:52.39.56.161 ip4:52.43.64.76  ip4:192.174.84.0/28 ip4:147.253.223.25 ip4:147.253.223.26 ~all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1; p=reject; rua=mailto:dmarc@slideshare.com; ruf=mailto:dmarc@slideshare.com",
+      "valid": true,
+      "checked_at": "2026-10-05T11:30:07.74937633Z"
+    },
+    {
+      "id": "v_18",
+      "user_id": "u_1",
+      "domain": "forms.gle",
+      "has_mx": false,
+      "has_spf": false,
+      "has_dmarc": false,
+      "valid": false,
+      "checked_at": "2026-10-05T11:30:07.799968241Z"
+    },
+    {
+      "id": "v_19",
+      "user_id": "u_1",
+      "domain": "line.me",
+      "has_mx": true,
+      "mx_hosts": [
+        "mx-common.line-apps.com",
+        "mx1-common.line-apps.com",
+        "mx3-common.line-apps.com",
+        "mx2-common.line-apps.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 include:naver.com include:spf.naver.jp ip4:203.104.136.0/24 ip4:147.92.128.0/17 include:_spfblock_ext.line.me include:bulk-spf.yahoo.co.jp ~all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1; p=none; fo=s; rua=mailto:dl_dmarc@linecorp.com; pct=100",
+      "valid": true,
+      "checked_at": "2026-10-05T11:30:08.35241632Z"
+    },
+    {
+      "id": "v_20",
+      "user_id": "u_1",
+      "domain": "who.int",
+      "has_mx": true,
+      "mx_hosts": [
+        "who-int.mail.protection.outlook.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 ip4:158.232.12.0/24 include:spf.protection.outlook.com include:_spfincludes.who.int -all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1; p=reject; pct=100; fo=1; ri=3600; rua=mailto:422b6d07@inbox.ondmarc.com,mailto:dmarc-rua@who.int;",
+      "valid": true,
+      "checked_at": "2026-10-05T11:30:09.409002971Z"
+    },
+    {
+      "id": "v_21",
+      "user_id": "u_1",
+      "domain": "amazon.co.jp",
+      "has_mx": true,
+      "mx_hosts": [
+        "amazon-smtp.amazon.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 include:amazon.com include:spf-bma.mpme.jp -all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1;p=quarantine;pct=100;rua=mailto:report@dmarc.amazon.com;ruf=mailto:report@dmarc.amazon.com",
+      "valid": true,
+      "checked_at": "2026-10-05T11:30:10.41646661Z"
+    },
+    {
+      "id": "v_22",
+      "user_id": "u_1",
+      "domain": "bhindi.ai",
+      "has_mx": false,
+      "has_spf": false,
+      "has_dmarc": false,
+      "valid": false,
+      "checked_at": "2026-10-05T11:30:11.322546814Z"
+    },
+    {
+      "id": "v_23",
+      "user_id": "u_1",
+      "domain": "nytimes.com",
+      "has_mx": true,
+      "mx_hosts": [
+        "aspmx.l.google.com",
+        "alt2.aspmx.l.google.com",
+        "alt1.aspmx.l.google.com",
+        "alt3.aspmx.l.google.com",
+        "alt4.aspmx.l.google.com"
+      ],
+      "has_spf": true,
+      "spf_record": "v=spf1 include:nytimes.com._nspf.vali.email include:%{i}._ip.%{h}._ehlo.%{d}._spf.vali.email include:_spf.e.sparkpost.com include:amazonses.com ~all",
+      "has_dmarc": true,
+      "dmarc_record": "v=DMARC1; p=reject; rua=mailto:dmarc_agg@vali.email,mailto:dmarc.report@nytimes.com",
+      "valid": true,
+      "checked_at": "2026-10-05T11:30:11.567960271Z"
+    },
+    {
+      "id": "v_24",
+      "user_id": "u_1",
+      "domain": "yonu.lol",
+      "has_mx": false,
+      "has_spf": false,
+      "has_dmarc": false,
+      "valid": false,
+      "checked_at": "2026-10-05T11:30:12.345240114Z"
+    },
+    {
+      "id": "v_25",
+      "user_id": "u_1",
+      "domain": "twitch.tv",
+      "has_mx": true,
+      "mx_hosts": [
+        "aspmx.l.google.com",
+        "alt1.aspmx.l.google.com",
+        "alt2.aspmx.l.google.com",
+        "aspmx2.googlemail.com",
+        "aspmx3.googlemail.com"
+      ],
+      "has_spf": false,
+      "has_dmarc": false,
+      "valid": false,
+      "error": "TXT: lookup twitch.tv on [2409:40e3:3105:22bc::e8]:53: dial udp [2409:40e3:3105:22bc::e8]:53: i/o timeout; DMARC: lookup _dmarc.twitch.tv on [2409:40e3:3105:22bc::e8]:53: dial udp [2409:40e3:3105:22bc::e8]:53: i/o timeout",
+      "checked_at": "2026-10-05T11:30:15.08354843Z"
+    },
+    {
+      "id": "v_26",
+      "user_id": "u_1",
+      "domain": "example.eww",
+      "has_mx": false,
+      "has_spf": false,
+      "has_dmarc": false,
+      "valid": false,
+      "checked_at": "2026-10-05T11:31:07.429748192Z"
+    }
+  ],
+  "Quota": {
+    "u_1|2026-10-05": 26
+  },
+  "NextUserSeq": 1,
+  "NextRecSeq": 26
+}
