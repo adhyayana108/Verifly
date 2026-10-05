@@ -3,6 +3,7 @@ import type {
   AnalyticsSummary,
   AuthResponse,
   BulkEvent,
+  PublicUser,
   VerificationRecord,
 } from "./types";
 
@@ -30,7 +31,12 @@ const STATUS_FALLBACKS: Record<number, string> = {
 
 function authHeaders(): Record<string, string> {
   const token = localStorage.getItem("verifly_token");
-  return token ? { Authorization: `Bearer ${token}` } : {};
+
+  return token
+    ? {
+        Authorization: `Bearer ${token}`,
+      }
+    : {};
 }
 
 async function parseErrorBody(res: Response): Promise<string> {
@@ -62,7 +68,9 @@ async function request<T>(
     ...init,
     headers: {
       ...(init.body && !(init.body instanceof FormData)
-        ? { "Content-Type": "application/json" }
+        ? {
+            "Content-Type": "application/json",
+          }
         : {}),
       ...authHeaders(),
       ...(init.headers ?? {}),
@@ -83,14 +91,15 @@ async function request<T>(
   return (await res.json()) as T;
 }
 
-// Auth
+//Authentication
+
 
 export function register(input: {
   username: string;
   email: string;
   password: string;
 }) {
-  return request<AuthResponse>("/api/register", {
+  return request<AuthResponse>("/api/auth/register", {
     method: "POST",
     body: JSON.stringify(input),
   });
@@ -100,17 +109,18 @@ export function login(input: {
   username: string;
   password: string;
 }) {
-  return request<AuthResponse>("/api/login", {
+  return request<AuthResponse>("/api/auth/login", {
     method: "POST",
     body: JSON.stringify(input),
   });
 }
 
 export function me() {
-  return request<import("./types").PublicUser>("/api/me");
+  return request<PublicUser>("/api/auth/me");
 }
 
-// Verification
+//Verification
+
 
 export function verifyDomain(domain: string) {
   return request<VerificationRecord>(
@@ -134,20 +144,27 @@ export function getAdminUsers() {
   return request<AdminUserView[]>("/api/admin/users");
 }
 
+
+//Bulk verification
+
 export async function bulkVerify(
   file: File,
   onEvent: (event: BulkEvent) => void,
   signal?: AbortSignal,
 ): Promise<void> {
   const form = new FormData();
+
   form.append("file", file);
 
-  const res = await fetch(`${API_BASE}/api/bulk-verify`, {
-    method: "POST",
-    headers: authHeaders(),
-    body: form,
-    signal,
-  });
+  const res = await fetch(
+    `${API_BASE}/api/bulk-verify`,
+    {
+      method: "POST",
+      headers: authHeaders(),
+      body: form,
+      signal,
+    },
+  );
 
   if (!res.ok || !res.body) {
     throw new ApiError(
@@ -168,7 +185,9 @@ export async function bulkVerify(
       break;
     }
 
-    buffer += decoder.decode(value, { stream: true });
+    buffer += decoder.decode(value, {
+      stream: true,
+    });
 
     let newlineIndex: number;
 
@@ -183,18 +202,27 @@ export async function bulkVerify(
         continue;
       }
 
-      onEvent(JSON.parse(line) as BulkEvent);
+      onEvent(
+        JSON.parse(line) as BulkEvent,
+      );
     }
   }
 
-  // Process a final line if the server closes without a trailing newline.
   const finalLine = buffer.trim();
 
   if (finalLine) {
-    onEvent(JSON.parse(finalLine) as BulkEvent);
+    onEvent(
+      JSON.parse(finalLine) as BulkEvent,
+    );
   }
 }
 
+
+// Health
+
+
 export function healthz() {
-  return request<{ status: string }>("/healthz");
+  return request<{ status: string }>(
+    "/api/healthz",
+  );
 }

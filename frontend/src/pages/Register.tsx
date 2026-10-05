@@ -41,7 +41,7 @@ export function RegisterPage() {
     <AuthLayout>
       <div className="flex flex-col gap-1 mb-7">
         <h1 className="text-xl text-ink">Create an account</h1>
-        <p className="text-sm text-ink-faint">The first account registered becomes an administrator.</p>
+        <p className="text-sm text-ink-faint">Create your account to get started.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
